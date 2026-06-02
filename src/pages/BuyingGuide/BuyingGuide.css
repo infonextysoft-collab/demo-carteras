@@ -1,0 +1,158 @@
+.buying-guide {
+  background: #fff7f3;
+}
+
+.buying-guide__steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  margin-top: 40px;
+}
+
+.buying-guide__info {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 34px;
+  align-items: stretch;
+  margin-top: 70px;
+}
+
+.buying-guide__image {
+  overflow: hidden;
+  border-radius: 34px;
+  background: #ffffff;
+  border: 1px solid #f1d8ce;
+  box-shadow: 0 26px 60px rgba(42, 24, 18, 0.1);
+}
+
+.buying-guide__image img {
+  width: 100%;
+  height: 100%;
+  min-height: 440px;
+  object-fit: cover;
+}
+
+.buying-guide__content {
+  padding: 36px;
+  border-radius: 34px;
+  background: #ffffff;
+  border: 1px solid #f1d8ce;
+  box-shadow: 0 26px 60px rgba(42, 24, 18, 0.08);
+}
+
+.buying-guide__content span {
+  display: inline-flex;
+  margin-bottom: 14px;
+  color: #b45309;
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.buying-guide__content h2 {
+  color: #2a1812;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.08;
+  margin-bottom: 16px;
+}
+
+.buying-guide__content p {
+  color: #7c6a63;
+  line-height: 1.8;
+  margin-bottom: 22px;
+}
+
+.buying-guide__content ul {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 26px;
+}
+
+.buying-guide__content li {
+  position: relative;
+  padding-left: 24px;
+  color: #4b5563;
+  line-height: 1.65;
+}
+
+.buying-guide__content li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #16a34a;
+  font-weight: 900;
+}
+
+.buying-guide__faq {
+  margin-top: 76px;
+}
+
+.buying-guide__faq-list {
+  display: grid;
+  gap: 14px;
+}
+
+.buying-guide__cta {
+  margin-top: 70px;
+  padding: 36px;
+  border-radius: 34px;
+  background: #2a1812;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  gap: 28px;
+  align-items: center;
+  box-shadow: 0 26px 60px rgba(42, 24, 18, 0.16);
+}
+
+.buying-guide__cta h2 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  margin-bottom: 10px;
+}
+
+.buying-guide__cta p {
+  max-width: 640px;
+  color: #f1d8ce;
+  line-height: 1.7;
+}
+
+.buying-guide__actions {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 34px;
+}
+
+@media (max-width: 1050px) {
+  .buying-guide__steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .buying-guide__info {
+    grid-template-columns: 1fr;
+  }
+
+  .buying-guide__cta {
+    display: block;
+  }
+
+  .buying-guide__cta .whatsapp-button {
+    margin-top: 24px;
+  }
+}
+
+@media (max-width: 620px) {
+  .buying-guide__steps {
+    grid-template-columns: 1fr;
+  }
+
+  .buying-guide__content,
+  .buying-guide__cta {
+    padding: 26px;
+  }
+
+  .buying-guide__actions {
+    flex-direction: column;
+  }
+}

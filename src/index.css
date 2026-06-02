@@ -1,0 +1,97 @@
+/* Reset general */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Scroll suave */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Base del proyecto */
+body {
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  background: #fff7f3;
+  color: #2a1812;
+  line-height: 1.5;
+}
+
+/* Imágenes */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Enlaces */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Formularios */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+input,
+select,
+textarea {
+  outline: none;
+}
+
+/* Listas */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Root */
+#root {
+  min-height: 100vh;
+}
+
+/* Selección */
+::selection {
+  background: #fde7dc;
+  color: #92400e;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fff7f3;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e7bfae;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d29a84;
+}
+
+/* Clases rápidas */
+.text-muted {
+  color: #7c6a63;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}

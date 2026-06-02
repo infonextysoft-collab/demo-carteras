@@ -1,0 +1,62 @@
+.promotions-page {
+  background: #fff7f3;
+}
+
+.promotions-page__banner {
+  min-height: 300px;
+  margin-bottom: 60px;
+  padding: 38px;
+  border-radius: 34px;
+  display: flex;
+  align-items: flex-end;
+  background:
+    linear-gradient(90deg, rgba(42, 24, 18, 0.9), rgba(42, 24, 18, 0.35)),
+    url("https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=1200&q=80");
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 28px 60px rgba(42, 24, 18, 0.16);
+}
+
+.promotions-page__banner span {
+  display: inline-flex;
+  margin-bottom: 12px;
+  color: #fde7dc;
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.promotions-page__banner h1 {
+  color: #ffffff;
+  font-size: clamp(2.3rem, 5vw, 4rem);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.promotions-page__banner p {
+  max-width: 620px;
+  color: #f1d8ce;
+  line-height: 1.7;
+}
+
+.promotions-page__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 26px;
+}
+
+.promotions-page__products {
+  margin-top: 80px;
+}
+
+@media (max-width: 760px) {
+  .promotions-page__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .promotions-page__banner {
+    padding: 28px;
+    min-height: 260px;
+  }
+}
