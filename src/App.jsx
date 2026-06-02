@@ -14,7 +14,6 @@ import "./App.css";
 function App() {
   return (
     <Router
-      base="/demo-carteras/"
       root={(props) => (
         <Layout>
           {props.children}
