@@ -387,7 +387,7 @@ export const products = [
     destacado: false,
     promocion: true,
     imagen:
-      "https://images.unsplash.com/photo-1596372971244-34a1f0cb429f?auto=format&fit=crop&w=900&q=80",
+      "https://m.media-amazon.com/images/I/61u9HzgU6VL._AC_UY1000_.jpg",
     descripcion:
       "Mochila rosada moderna para looks juveniles y casuales.",
     colores: ["Rosado"],
