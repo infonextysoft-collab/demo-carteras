@@ -21,10 +21,8 @@ function Footer() {
 
         <div class="footer__links">
           <A href="/">Inicio</A>
-          <A href="/productos">Productos</A>
-          <A href="/promociones">Promociones</A>
-          <A href="/novedades">Novedades</A>
-          <A href="/guia-compra">Guía de compra</A>
+          <A href="/productos">Catálogo</A>
+          <A href="/contacto">Contacto</A>
         </div>
 
         <div class="footer__info">

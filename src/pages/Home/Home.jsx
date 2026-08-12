@@ -4,40 +4,37 @@ import { For } from "solid-js";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import WhatsAppButton from "../../components/WhatsAppButton/WhatsAppButton";
 import ProductGrid from "../../components/ProductGrid/ProductGrid";
-import PromoCard from "../../components/PromoCard/PromoCard";
 import TestimonialCard from "../../components/TestimonialCard/TestimonialCard";
-import BlogCard from "../../components/BlogCard/BlogCard";
 import FeatureCard from "../../components/FeatureCard/FeatureCard";
+import { reveal } from "../../utils/reveal";
 
-import { categories } from "../../data/categories";
-import { promotions } from "../../data/promotions";
 import { testimonials } from "../../data/testimonials";
-import { blogPosts } from "../../data/blog";
 
 import "./Home.css";
 
+// Evita que el bundler elimine el import por "no usado" (lo requiere use:reveal)
+reveal;
+
 function Home() {
-  const featuredCategories = categories.filter(
-    (category) => category.id !== "todos"
-  );
-
-  const categoryImages = {
-    carteras:
-      "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=900&q=80",
-    bolsos:
-      "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=900&q=80",
-    mochilas:
-      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=80",
-    crossbody:
-      "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?auto=format&fit=crop&w=900&q=80",
-    billeteras:
-      "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=900&q=80",
-    accesorios:
-      "https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=900&q=80",
-  };
-
-  const mainPromotions = promotions.filter((promo) => promo.destacado).slice(0, 2);
-  const latestPosts = blogPosts.slice(0, 3);
+  const steps = [
+    {
+      number: "01",
+      title: "Nos escribes por WhatsApp",
+      description:
+        "Cuéntanos qué buscas: cartera, bolso, mochila o accesorio, y para qué ocasión lo necesitas.",
+    },
+    {
+      number: "02",
+      title: "Te mostramos opciones",
+      description:
+        "Te enviamos fotos, colores, medidas y precio de los modelos disponibles según tu estilo.",
+    },
+    {
+      number: "03",
+      title: "Coordinamos tu entrega",
+      description: "Separas tu modelo y coordinamos el pago y el envío o recojo.",
+    },
+  ];
 
   return (
     <div class="home">
@@ -77,39 +74,7 @@ function Home() {
         </div>
       </section>
 
-      <section class="home-categories section-padding">
-        <div class="page-container">
-          <SectionTitle
-            label="Categorías"
-            title="Compra por tipo de accesorio"
-            description="Explora carteras, bolsos, mochilas, crossbody, billeteras y accesorios para cada ocasión."
-            center
-          />
-
-          <div class="home-categories__grid">
-            <For each={featuredCategories}>
-              {(category) => (
-                <A
-                  href={`/productos/categoria/${category.id}`}
-                  class="home-categories__card"
-                >
-                  <img
-                    src={categoryImages[category.id]}
-                    alt={category.nombre}
-                  />
-
-                  <div class="home-categories__overlay">
-                    <h3>{category.nombre}</h3>
-                    <span>Ver modelos</span>
-                  </div>
-                </A>
-              )}
-            </For>
-          </div>
-        </div>
-      </section>
-
-      <section class="home-products section-padding">
+      <section class="home-products section-padding" use:reveal>
         <div class="page-container">
           <div class="home-section-header">
             <SectionTitle
@@ -127,29 +92,30 @@ function Home() {
         </div>
       </section>
 
-      <section class="home-promotions section-padding">
+      <section class="home-steps section-padding" use:reveal>
         <div class="page-container">
-          <div class="home-section-header">
-            <SectionTitle
-              label="Promociones"
-              title="Ofertas y combos de temporada"
-              description="Aprovecha precios especiales en modelos seleccionados y combos disponibles por tiempo limitado."
-            />
+          <SectionTitle
+            label="Cómo funciona"
+            title="Comprar es simple y directo"
+            description="Sin registros ni carritos complicados: todo se coordina por WhatsApp, de principio a fin."
+            center
+          />
 
-            <A href="/promociones" class="home-section-link">
-              Ver promociones
-            </A>
-          </div>
-
-          <div class="home-grid home-grid--two">
-            <For each={mainPromotions}>
-              {(promotion) => <PromoCard promotion={promotion} />}
+          <div class="home-steps__grid">
+            <For each={steps}>
+              {(step) => (
+                <div class="home-steps__item">
+                  <span class="home-steps__number">{step.number}</span>
+                  <h3>{step.title}</h3>
+                  <p>{step.description}</p>
+                </div>
+              )}
             </For>
           </div>
         </div>
       </section>
 
-      <section class="home-features section-padding">
+      <section class="home-features section-padding" use:reveal>
         <div class="page-container">
           <SectionTitle
             label="Beneficios"
@@ -180,7 +146,7 @@ function Home() {
         </div>
       </section>
 
-      <section class="home-testimonials section-padding">
+      <section class="home-testimonials section-padding" use:reveal>
         <div class="page-container">
           <SectionTitle
             label="Opiniones"
@@ -199,29 +165,7 @@ function Home() {
         </div>
       </section>
 
-      <section class="home-blog section-padding">
-        <div class="page-container">
-          <div class="home-section-header">
-            <SectionTitle
-              label="Novedades"
-              title="Consejos de estilo"
-              description="Ideas simples para elegir, combinar y cuidar tus carteras y bolsos."
-            />
-
-            <A href="/novedades" class="home-section-link">
-              Ver novedades
-            </A>
-          </div>
-
-          <div class="home-grid home-grid--three">
-            <For each={latestPosts}>
-              {(post) => <BlogCard post={post} />}
-            </For>
-          </div>
-        </div>
-      </section>
-
-      <section class="home-cta">
+      <section class="home-cta" use:reveal>
         <div class="page-container">
           <div class="home-cta__box">
             <div>

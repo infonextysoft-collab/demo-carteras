@@ -1,16 +1,25 @@
 import { A } from "@solidjs/router";
-import { createSignal } from "solid-js";
+import { createSignal, onCleanup, onMount } from "solid-js";
 import { createGeneralWhatsAppLink } from "../../utils/whatsapp";
 
 import "./Header.css";
 
 function Header() {
   const [menuOpen, setMenuOpen] = createSignal(false);
+  const [scrolled, setScrolled] = createSignal(false);
 
   const closeMenu = () => setMenuOpen(false);
 
+  onMount(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onCleanup(() => window.removeEventListener("scroll", onScroll));
+  });
+
   return (
-    <header class="header">
+    <header class={`header ${scrolled() ? "header--scrolled" : ""}`}>
       <div class="header__container">
         <A href="/" class="header__logo" onClick={closeMenu}>
           <div class="header__logo-icon">L</div>
@@ -49,34 +58,16 @@ function Header() {
             activeClass="header__link--active"
             onClick={closeMenu}
           >
-            Productos
+            Catálogo
           </A>
 
           <A
-            href="/promociones"
+            href="/contacto"
             class="header__link"
             activeClass="header__link--active"
             onClick={closeMenu}
           >
-            Promociones
-          </A>
-
-          <A
-            href="/novedades"
-            class="header__link"
-            activeClass="header__link--active"
-            onClick={closeMenu}
-          >
-            Novedades
-          </A>
-
-          <A
-            href="/guia-compra"
-            class="header__link"
-            activeClass="header__link--active"
-            onClick={closeMenu}
-          >
-            Guía de compra
+            Contacto
           </A>
 
           <a

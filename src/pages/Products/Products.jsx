@@ -3,8 +3,11 @@ import { useParams } from "@solidjs/router";
 import ProductGrid from "../../components/ProductGrid/ProductGrid";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import { categories } from "../../data/categories";
+import { reveal } from "../../utils/reveal";
 
 import "./Products.css";
+
+reveal;
 
 function Products() {
   const params = useParams();
@@ -20,9 +23,9 @@ function Products() {
   };
 
   return (
-    <section class="products-page section-padding">
+    <section class="products-page section-padding" use:reveal>
       <div class="page-container">
-        <div class="products-page__hero">
+        <div class="products-page__hero fade-up">
           <SectionTitle
             label="Productos"
             title={categoryName()}
