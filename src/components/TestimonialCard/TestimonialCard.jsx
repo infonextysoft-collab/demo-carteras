@@ -5,7 +5,9 @@ function TestimonialCard(props) {
 
   return (
     <article class="testimonial-card">
-      <div class="testimonial-card__stars">★★★★★</div>
+      <div class="testimonial-card__stars" role="img" aria-label="5 de 5 estrellas">
+        ★★★★★
+      </div>
 
       <p>“{testimonial.comentario}”</p>
 

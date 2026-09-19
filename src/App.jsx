@@ -20,7 +20,6 @@ function App() {
     >
       <Route path="/" component={Home} />
       <Route path="/productos" component={Products} />
-      <Route path="/productos/categoria/:cat" component={Products} />
       <Route path="/productos/:id" component={ProductDetail} />
       <Route path="/contacto" component={Contact} />
     </Router>

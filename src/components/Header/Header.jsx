@@ -11,7 +11,7 @@ function Header() {
   const closeMenu = () => setMenuOpen(false);
 
   onMount(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    const onScroll = () => setScrolled(window.scrollY > 8);
 
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -22,26 +22,26 @@ function Header() {
     <header class={`header ${scrolled() ? "header--scrolled" : ""}`}>
       <div class="header__container">
         <A href="/" class="header__logo" onClick={closeMenu}>
-          <div class="header__logo-icon">L</div>
-
-          <div>
-            <span class="header__brand">Luna Bags</span>
-            <small class="header__tagline">Carteras y accesorios</small>
-          </div>
+          Luna Bags
         </A>
 
         <button
           type="button"
-          class="header__menu-btn"
+          class={`header__menu-btn ${menuOpen() ? "header__menu-btn--open" : ""}`}
           onClick={() => setMenuOpen(!menuOpen())}
-          aria-label="Abrir menú"
+          aria-label={menuOpen() ? "Cerrar menú" : "Abrir menú"}
+          aria-expanded={menuOpen()}
+          aria-controls="main-nav"
         >
           <span></span>
           <span></span>
           <span></span>
         </button>
 
-        <nav class={`header__nav ${menuOpen() ? "header__nav--open" : ""}`}>
+        <nav
+          id="main-nav"
+          class={`header__nav ${menuOpen() ? "header__nav--open" : ""}`}
+        >
           <A
             href="/"
             end
@@ -58,7 +58,7 @@ function Header() {
             activeClass="header__link--active"
             onClick={closeMenu}
           >
-            Catálogo
+            Productos
           </A>
 
           <A
@@ -74,7 +74,7 @@ function Header() {
             href={createGeneralWhatsAppLink()}
             target="_blank"
             rel="noopener noreferrer"
-            class="header__whatsapp"
+            class="btn btn-whatsapp btn-sm header__whatsapp"
             onClick={closeMenu}
           >
             WhatsApp

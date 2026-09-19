@@ -6,58 +6,25 @@ import "./ProductGrid.css";
 
 function ProductGrid(props) {
   const [search, setSearch] = createSignal("");
-  const [category, setCategory] = createSignal(props.initialCategory || "todos");
   const [order, setOrder] = createSignal("default");
-  const [availability, setAvailability] = createSignal("todos");
-  const [color, setColor] = createSignal("Todos");
-  const [material, setMaterial] = createSignal("Todos");
-  const [style, setStyle] = createSignal("Todos");
 
   const filteredProducts = createMemo(() => {
     let result = [...products];
+    const text = search().toLowerCase().trim();
 
-    if (props.onlyFeatured) {
-      result = result.filter((product) => product.destacado);
-    }
-
-    if (props.onlyPromotions) {
-      result = result.filter((product) => product.promocion);
-    }
-
-    if (category() !== "todos") {
-      result = result.filter((product) => product.categoria === category());
-    }
-
-    if (availability() !== "todos") {
-      result = result.filter((product) => product.estado === availability());
-    }
-
-    if (color() !== "Todos") {
-      result = result.filter((product) => product.colores.includes(color()));
-    }
-
-    if (material() !== "Todos") {
-      result = result.filter((product) => product.material === material());
-    }
-
-    if (style() !== "Todos") {
-      result = result.filter((product) => product.estilo === style());
-    }
-
-    if (search().trim() !== "") {
-      const text = search().toLowerCase().trim();
-
-      result = result.filter((product) => {
-        return (
-          product.nombre.toLowerCase().includes(text) ||
-          product.marca.toLowerCase().includes(text) ||
-          product.categoriaNombre.toLowerCase().includes(text) ||
-          product.material.toLowerCase().includes(text) ||
-          product.estilo.toLowerCase().includes(text) ||
-          product.uso.toLowerCase().includes(text) ||
-          product.colores.join(" ").toLowerCase().includes(text)
-        );
-      });
+    if (text !== "") {
+      result = result.filter((product) =>
+        [
+          product.nombre,
+          product.marca,
+          product.material,
+          product.estilo,
+          ...product.colores,
+        ]
+          .join(" ")
+          .toLowerCase()
+          .includes(text)
+      );
     }
 
     if (order() === "price-asc") {
@@ -72,6 +39,10 @@ function ProductGrid(props) {
       result.sort((a, b) => a.nombre.localeCompare(b.nombre));
     }
 
+    if (props.limit) {
+      result = result.slice(0, props.limit);
+    }
+
     return result;
   });
 
@@ -81,36 +52,30 @@ function ProductGrid(props) {
         <ProductFilters
           search={search}
           setSearch={setSearch}
-          category={category}
-          setCategory={setCategory}
           order={order}
           setOrder={setOrder}
-          availability={availability}
-          setAvailability={setAvailability}
-          color={color}
-          setColor={setColor}
-          material={material}
-          setMaterial={setMaterial}
-          style={style}
-          setStyle={setStyle}
         />
-      </Show>
 
-      <div class="product-grid-section__result">
-        <p>
-          Mostrando <strong>{filteredProducts().length}</strong> productos
+        <p class="product-grid-section__result">
+          {filteredProducts().length}{" "}
+          {filteredProducts().length === 1 ? "producto" : "productos"}
         </p>
-      </div>
+      </Show>
 
       <Show
         when={filteredProducts().length > 0}
         fallback={
           <div class="product-grid-section__empty">
-            <h3>No se encontraron productos</h3>
-            <p>
-              Intenta cambiar la búsqueda, categoría, color, material o estilo
-              seleccionado.
-            </p>
+            <h3>No encontramos productos</h3>
+            <p>Prueba con otro nombre, color o material.</p>
+
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onClick={() => setSearch("")}
+            >
+              Limpiar búsqueda
+            </button>
           </div>
         }
       >

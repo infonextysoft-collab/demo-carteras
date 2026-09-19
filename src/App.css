@@ -1,10 +1,38 @@
 .page-container {
-  width: min(1180px, 92%);
-  margin: 0 auto;
+  width: min(1140px, 100% - 40px);
+  margin-inline: auto;
 }
 
 .section-padding {
-  padding: 82px 0;
+  padding-block: 72px;
+}
+
+.section--soft {
+  background: var(--color-bg-soft);
+}
+
+/* Encabezado de páginas internas */
+.page-header {
+  padding-block: 48px;
+  background: var(--color-bg-soft);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.page-header h1 {
+  margin-bottom: 8px;
+  font-size: clamp(1.9rem, 3.5vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.page-header p {
+  max-width: 620px;
+  color: var(--color-text-soft);
+  line-height: 1.7;
+}
+
+.page-header__actions {
+  margin-top: 24px;
 }
 
 /* Botones generales */
@@ -13,66 +41,86 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  border: none;
-  border-radius: 999px;
-  padding: 13px 22px;
+  min-height: 46px;
+  padding: 0 20px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
   font-size: 0.95rem;
-  font-weight: 900;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
   text-decoration: none;
   cursor: pointer;
   transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    background 0.25s ease,
-    color 0.25s ease;
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
 }
 
-.btn:hover {
-  transform: translateY(-2px);
+.btn-sm {
+  min-height: 40px;
+  padding: 0 14px;
+  font-size: 0.88rem;
 }
 
 .btn-primary {
-  background: #b45309;
+  background: var(--color-primary);
   color: #ffffff;
-  box-shadow: 0 14px 28px rgba(180, 83, 9, 0.25);
 }
 
 .btn-primary:hover {
-  background: #92400e;
-  box-shadow: 0 18px 34px rgba(180, 83, 9, 0.34);
+  background: var(--color-primary-hover);
 }
 
 .btn-secondary {
   background: #ffffff;
-  color: #2a1812;
-  border: 1px solid #f1d8ce;
-  box-shadow: 0 10px 22px rgba(42, 24, 18, 0.06);
+  color: var(--color-text);
+  border-color: var(--color-border-strong);
 }
 
 .btn-secondary:hover {
-  background: #fff1eb;
+  background: var(--color-bg-soft);
+  border-color: var(--color-text-muted);
 }
 
 .btn-whatsapp {
-  background: #16a34a;
+  background: var(--color-whatsapp);
   color: #ffffff;
-  box-shadow: 0 14px 28px rgba(22, 163, 74, 0.25);
 }
 
 .btn-whatsapp:hover {
-  background: #15803d;
-  box-shadow: 0 18px 34px rgba(22, 163, 74, 0.34);
+  background: var(--color-whatsapp-hover);
+}
+
+/* Estado de producto */
+.status-badge {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.status-badge--available {
+  background: var(--color-success-soft);
+  color: var(--color-success-text);
+}
+
+.status-badge--order {
+  background: var(--color-warning-soft);
+  color: var(--color-warning-text);
 }
 
 /* Animación reutilizable */
 .fade-up {
-  animation: fadeUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(12px);
   }
 
   to {
@@ -84,11 +132,10 @@
 /* Revelado al hacer scroll (use:reveal) */
 .reveal {
   opacity: 0;
-  transform: translateY(32px);
+  transform: translateY(16px);
   transition:
-    opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: opacity, transform;
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .reveal--visible {
@@ -107,9 +154,13 @@
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .section-padding {
-    padding: 58px 0;
+    padding-block: 56px;
+  }
+
+  .page-header {
+    padding-block: 36px;
   }
 
   .btn {

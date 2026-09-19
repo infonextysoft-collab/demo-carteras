@@ -1,18 +1,29 @@
+import { createGeneralWhatsAppLink } from "../../utils/whatsapp";
+
 import "./WhatsAppButton.css";
 
 function WhatsAppButton(props) {
-  const phone = props.phone || "51999999999";
-  const message =
-    props.message || "Hola, quiero consultar sobre carteras y bolsos disponibles.";
-  const link = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-
   return (
     <a
-      href={link}
+      href={props.href || createGeneralWhatsAppLink()}
       target="_blank"
       rel="noopener noreferrer"
-      class={`whatsapp-button ${props.class || ""}`}
+      class={`btn btn-whatsapp whatsapp-button ${props.class || ""}`}
     >
+      <svg
+        class="whatsapp-button__icon"
+        viewBox="0 0 24 24"
+        width="18"
+        height="18"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+      </svg>
       {props.children || "Consultar por WhatsApp"}
     </a>
   );
